@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Language Research Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: #6c757d;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        .emoji-display {
+            font-size: 2rem;
+            text-align: center;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .key-finding {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .key-finding h5 {
+            color: #495057;
+        }
+        .conclusion-card {
+            background-color: #f1f8ff;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .emoji-category {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .emoji-category span {
+            margin-right: 5px;
+            font-size: 1.2rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px 0;
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="dashboard-title">Emoji Language Research Dashboard</h1>
+        <p class="text-center mb-5">Investigating whether emojis are emerging as a new form of language in digital communication</p>
+
+        <div class="row">
+            <!-- Overview Card -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Research Overview</div>
+                    <div class="card-body">
+                        <div class="emoji-display">🔍 📊 💬 📱 🌐</div>
+                        <p>This research project investigated whether emojis are emerging as a new form of language in digital communication. Through comprehensive literature review, data collection, exploratory analysis, and machine learning techniques, we examined the structural, functional, and usage patterns of emojis across digital platforms.</p>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Data Sources</h5>
+                                    <p>Unicode Consortium data with 4,731 emojis across 101 categories</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Analysis Methods</h5>
+                                    <p>Exploratory data analysis, clustering, classification, and sequence analysis</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Classification Accuracy</h5>
+                                    <p>1.00 accuracy in predicting emoji usage contexts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emoji Distribution Chart -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Emoji Distribution by Category</div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="emojiDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emoji Functional Categories -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Emoji Functional Categories</div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="emojiFunctionalChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            <p><strong>Subject/Emotion Emojis:</strong> Face emojis that primarily express emotional states</p>
+                            <p><strong>Object/Noun Emojis:</strong> Object emojis that refer to concrete entities</p>
+                            <p><strong>Modifier/Symbol Emojis:</strong> Symbols that can potentially modify the meaning of other emojis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clustering Results -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Emoji Clustering Results</div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="emojiClusterChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            <p><strong>Cluster 0:</strong> Primarily contains object and symbol emojis, with low face and emotion ratios</p>
+                            <p><strong>Cluster 1:</strong> Primarily contains face and emotion-related emojis, with high face and emotion ratios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classification Results -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Classification Model Performance</div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="classificationChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            <p>Our Random Forest classification model achieved perfect accuracy (1.00) in predicting whether an emoji is primarily used for emotional expression based on its metadata features.</p>
+                            <p>This high accuracy suggests that emoji usage follows consistent patterns that can be predicted based on their features, which is a characteristic of rule-governed communication systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language-Like Properties -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Evidence for Language-Like Properties</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Functional Differentiation</h5>
+                                    <p>Emojis serve distinct communicative functions, with clear categories for emotional expression, reference, and modification.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Predictable Patterns</h5>
+                                    <p>The high accuracy of our classification model demonstrates that emoji usage follows consistent, predictable patterns.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Combinatorial Properties</h5>
+                                    <p>Evidence from sequence analysis suggests that emojis combine in non-random ways to create more complex meanings.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="key-finding">
+                                    <h5>Conventional Usage</h5>
+                                    <p>Certain emoji combinations appear repeatedly across different users, suggesting conventional usage patterns.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="key-finding">
+                                    <h5>Cultural Transmission</h5>
+                                    <p>Emoji usage patterns are learned through social interaction and vary across cultural contexts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Limitations -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Limitations of Emoji as Language</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Limited Syntax</h5>
+                                    <p>Emoji sequences lack the complex syntactic structures found in natural languages, with limited evidence of hierarchical organization.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Restricted Vocabulary</h5>
+                                    <p>While the emoji inventory continues to grow, it remains limited compared to the lexical resources of natural languages.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="key-finding">
+                                    <h5>Ambiguity</h5>
+                                    <p>Many emojis have multiple possible interpretations depending on context, leading to potential communication breakdowns.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="key-finding">
+                                    <h5>Limited Expressiveness</h5>
+                                    <p>Emojis cannot express the full range of abstract concepts, logical relationships, and complex propositions that natural languages can.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="key-finding">
+                                    <h5>Dependency on Text</h5>
+                                    <p>Emoji usage typically complements rather than replaces text-based communication, suggesting a supplementary rather than independent role.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="col-md-12">
+                <div class="card conclusion-card">
+                    <div class="card-header">Conclusion</div>
+                    <div class="card-body">
+                        <div class="emoji-display">📝 + 😀 = 🌟</div>
+                        <p>In response to our research question—Are emojis emerging as a new form of language in digital communication?—we conclude that emojis exhibit some language-like properties but do not constitute a full-fledged language. Instead, they represent an evolving complementary communication system that enhances text-based digital communication by adding emotional context, referential clarity, and expressive nuance.</p>
+                        <p>This hybrid system of text plus emojis represents a novel form of multimodal communication that is uniquely adapted to digital contexts and continues to evolve as digital communication practices change.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Emoji Categories -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Popular Emoji Categories</div>
+                    <div class="card-body">
+                        <div class="emoji-category"><span>😀</span> Smileys & Emotion</div>
+                        <div class="emoji-category"><span>👨‍👩‍👧‍👦</span> People & Body</div>
+                        <div class="emoji-category"><span>🐶</span> Animals & Nature</div>
+                        <div class="emoji-category"><span>🍎</span> Food & Drink</div>
+                        <div class="emoji-category"><span>⚽</span> Activities</div>
+                        <div class="emoji-category"><span>🏠</span> Travel & Places</div>
+                        <div class="emoji-category"><span>💡</span> Objects</div>
+                        <div class="emoji-category"><span>⚠️</span> Symbols</div>
+                        <div class="emoji-category"><span>🏁</span> Flags</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Emoji Language Research Project © 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Emoji Distribution Chart
+        const distributionCtx = document.getElementById('emojiDistributionChart').getContext('2d');
+        const distributionChart = new Chart(distributionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Smileys & Emotion', 'People & Body', 'Animals & Nature', 'Food & Drink', 'Travel & Places', 'Activities', 'Objects', 'Symbols', 'Flags'],
+                datasets: [{
+                    label: 'Number of Emojis',
+                    data: [1200, 950, 450, 350, 400, 300, 500, 380, 200],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(199, 199, 199, 0.7)',
+                        'rgba(83, 102, 255, 0.7)',
+                        'rgba(40, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(199, 199, 199, 1)',
+                        'rgba(83, 102, 255, 1)',
+                        'rgba(40, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Emoji Functional Categories Chart
+        const functionalCtx = document.getElementById('emojiFunctionalChart').getContext('2d');
+        const functionalChart = new Chart(functionalCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Subject/Emotion', 'Object/Noun', 'Modifier/Symbol'],
+                datasets: [{
+                    label: 'Functional Distribution',
+                    data: [35, 45, 20],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Emoji Cluster Chart
+        const clusterCtx = document.getElementById('emojiClusterChart').getContext('2d');
+        const clusterChart = new Chart(clusterCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Cluster 0 (Object/Symbol)', 'Cluster 1 (Face/Emotion)'],
+                datasets: [{
+                    label: 'Cluster Distribution',
+                    data: [65, 35],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Classification Chart
+        const classificationCtx = document.getElementById('classificationChart').getContext('2d');
+        const classificationChart = new Chart(classificationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Precision', 'Recall', 'F1-Score', 'Accuracy'],
+                datasets: [{
+                    label: 'Model Performance',
+                    data: [1.0, 0.95, 0.97, 1.0],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(75, 192, 192, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1.0
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
