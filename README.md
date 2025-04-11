@@ -88,7 +88,7 @@ To collect additional emoji data:
 
 ## Conclusion
 
-Based on our research, we conclude that emojis exhibit some language-like properties but do not constitute a full-fledged language. Instead, they represent an evolving complementary communication system that enhances text-based digital communication by adding emotional context, referential clarity, and expressive nuance.
+Our research concludes that emojis exhibit some language-like properties but do not constitute a full-fledged language. Instead, they represent an evolving complementary communication system that enhances text-based digital communication by adding emotional context, referential clarity, and expressive nuance.
 
 This hybrid system of text plus emojis represents a novel form of multimodal communication that is uniquely adapted to digital contexts and continues to evolve as digital communication practices change.
 
