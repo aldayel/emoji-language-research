@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project investigates whether emojis are emerging as a new form of language in digital communication. Through comprehensive literature review, data collection, exploratory analysis, and machine learning techniques, we examined the structural, functional, and usage patterns of emojis across digital platforms.
+This project investigates whether emojis are emerging as a new form of language in digital communication. Through a comprehensive literature review, data collection, exploratory analysis, and machine learning techniques, we examined the structural, functional, and usage patterns of emojis across digital platforms.
 
 ## Key Findings
 
