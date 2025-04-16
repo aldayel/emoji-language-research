@@ -94,7 +94,7 @@ This hybrid system of text plus emojis represents a novel form of multimodal com
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
