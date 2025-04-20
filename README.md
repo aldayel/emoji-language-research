@@ -101,7 +101,3 @@ This project is licensed under the MIT License.
 - Unicode Consortium for emoji standards and definitions
 - Twitter API for providing access to emoji usage data
 - Academic researchers whose work informed our analysis
-
----
-
-Generated on: {datetime.now().strftime('%Y-%m-%d')}
